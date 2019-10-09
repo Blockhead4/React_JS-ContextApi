@@ -4,7 +4,8 @@ import { MovieContext } from "./MovieContext";
 const AddMovie = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [movies, setMovies] = useContext(MovieContext);
+  //   const [, setId] = useState("");
+  const [, setMovies] = useContext(MovieContext);
 
   const updateName = e => {
     setName(e.target.value);
@@ -14,9 +15,16 @@ const AddMovie = () => {
     setPrice(e.target.value);
   };
 
+  const updateId = obj => {
+    return obj.length;
+  };
+
   const addMovie = e => {
     e.preventDefault();
-    setMovies(prevMovies => [...prevMovies, { name: name, price: price }]);
+    setMovies(prevMovies => [
+      ...prevMovies,
+      { name: name, price: price, id: updateId(prevMovies) }
+    ]);
   };
 
   return (
